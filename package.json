@@ -1,0 +1,20 @@
+{
+  "name": "neural-network",
+  "version": "0.0.1",
+  "description": "a simple neural network for learning",
+  "main": "src/index.ts",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wu-yu-xuan/neural-network.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wu-yu-xuan/neural-network/issues"
+  },
+  "homepage": "https://github.com/wu-yu-xuan/neural-network#readme",
+  "devDependencies": {
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.3"
+  }
+}
