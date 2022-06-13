@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "a simple neural network for learning",
   "main": "src/index.ts",
-  "scripts": {},
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wu-yu-xuan/neural-network.git"
