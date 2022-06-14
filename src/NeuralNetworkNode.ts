@@ -31,6 +31,8 @@ export default class NeuralNetworkNode {
 
   weightDeltaArray?: number[];
 
+  biasDelta?: number;
+
   constructor({
     random,
     weightLength,
@@ -65,11 +67,12 @@ export default class NeuralNetworkNode {
     if (!inputArray) {
       throw new Error(`cannot call forward on first input layer`);
     }
-    const value =
+    const value = this.active(
       inputArray.reduce(
         (acc, input, index) => acc + this.weightArray[index] * input,
         0
-      ) + this.bias;
+      ) + this.bias
+    );
 
     checkNumber(value);
 
@@ -140,15 +143,22 @@ export default class NeuralNetworkNode {
     });
 
     checkNumber(this.weightDeltaArray);
+
+    this.biasDelta = -1 * this.learnRate * this.costValue! * this.activeValue!;
+
+    checkNumber(this.biasDelta);
   }
 
   checkDelta() {
-    if (!this.weightDeltaArray) {
-      return;
+    if (this.weightDeltaArray) {
+      this.weightArray = this.weightArray.map((weight, index) => {
+        return weight + this.weightDeltaArray![index];
+      });
+      this.weightDeltaArray = undefined;
     }
-    this.weightArray = this.weightArray.map((weight, index) => {
-      return weight + this.weightDeltaArray![index];
-    });
-    this.weightDeltaArray = undefined;
+    if (this.biasDelta !== undefined) {
+      this.bias += this.biasDelta;
+      this.biasDelta = undefined;
+    }
   }
 }
